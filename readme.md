@@ -1,4 +1,4 @@
-# NGenerator - MonoGame
+# NGenerator (Narrative Generator)
 
 NGenerator (the N stands for Narrative) is a template and tag substitution system. 
 Supply the code some rules in the form of either Json or the `InputHolder` model, 
