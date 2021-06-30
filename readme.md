@@ -232,4 +232,6 @@ Also, in the previous example, if `John` was selected to be reserved for `{{name
 the process will select from the remaining unreserved names, so ` pete` or `alph` would be selected.
 If there are no more unreserved names available, then the process will just pick a random one from all the names, reserved or not.
 
+## Credit where it is due
 
+This code was inspired by, but not a direct port of [Tracery](http://tracery.io/). There are differences in the way each of these function, but I felt it only right to attribute the inspiration for this project to [GalaxyKate](http://www.galaxykate.com/)
