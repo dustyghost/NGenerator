@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>DustyGhost.NGenerator</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Mark Johnson</Authors>
+    <Company>DustyGhost</Company> 
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
