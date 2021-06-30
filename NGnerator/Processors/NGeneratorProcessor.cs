@@ -25,6 +25,11 @@ namespace NGenerator.Processors
             _rnd = rnd;
         }
 
+        public NGenerratorProcessor()
+        {
+            _rnd = new Random();
+        }
+
         public string Process(string input)
         {
             _inputHolder.SetFromJson(input);
