@@ -5,6 +5,12 @@ Supply the code some rules in the form of either Json or the `InputHolder` model
 and it will convert the input into a random set of strings.
 This is usful for building all sorts of procedurally generated narratives. 
 
+## Links
+
+[GitHub](https://github.com/dustyghost/NGenerator) - dustyghost/NGenerator
+
+[Nuget](https://www.nuget.org/packages/DustyGhost.NGenerator/) -DustyGhost.NGenerator
+
 ## Code setup
 
 Setup is really easy, just import the `NGenerator.Processors` namespace.
