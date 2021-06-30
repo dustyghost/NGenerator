@@ -1,16 +1,19 @@
+using Humanizer;
+using NGenerator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Humanizer;
-using NGenerator.Models;
+
 namespace NGenerator.Processors
 {
-
     public class NGenerratorProcessor
     {
         private const string TagPrefix = "{{";
         private const string TagSuffix = "}}";
+        private const string ModSplit = ".";
+        private const string SubDefSplit = "::";
+
         private const string TagPattern = TagPrefix + "[^}]+" + TagSuffix;
 
         private readonly InputHolder _inputHolder = new InputHolder();
@@ -76,7 +79,12 @@ namespace NGenerator.Processors
                         }
                         else
                         {
-                            substitution = substitutions[_rnd.Next(substitutions.Length)];
+                            //try to get a different sub for each reserve mod
+                            var availableSubs = substitutions.Where(s => !Reserved.Where(r => r.Key == tagWithMods[0]).Any(a => a.Key == s.Split(':')[0])).ToArray();
+
+                            //If there are subs that have not been reserved yet select from them, else just pick from a random one.
+                            substitution = availableSubs.Length > 0 ? availableSubs[_rnd.Next(availableSubs.Length)] : substitutions[_rnd.Next(substitutions.Length)];
+
                             Reserved.Add(
                                 new ReservedSubstition
                                 {
@@ -93,7 +101,7 @@ namespace NGenerator.Processors
                     }
 
                     //Split by : to get the syntax definitions split from the word.
-                    string[] subDef = substitution.Split(':'); ;
+                    string[] subDef = substitution.Split(SubDefSplit);
                     var newString = subDef[0];
 
                     //If new string contains tag characters recursivly call Subsitutions
@@ -109,18 +117,23 @@ namespace NGenerator.Processors
                             case "a":
                                 newString = PrefixAnOrA(subDef, newString);
                                 break;
+
                             case "p":
                                 newString = Pluralize(subDef, newString);
                                 break;
+
                             case "u":
                                 newString = newString.Substring(0, 1).ToUpper() + newString[1..];
                                 break;
+
                             case "U":
                                 newString = newString.ToUpper();
                                 break;
+
                             case "l":
                                 newString = newString.ToLower();
                                 break;
+
                             default:
                                 break;
                         }
@@ -136,7 +149,7 @@ namespace NGenerator.Processors
         {
             foreach (var item in subDef)
             {
-                var defSplit = item.Split('.');
+                var defSplit = item.Split(ModSplit);
                 if (defSplit[0] == "p" && defSplit.Length > 1)
                     return defSplit[1];
             }
@@ -147,7 +160,7 @@ namespace NGenerator.Processors
         {
             foreach (var item in subDef)
             {
-                var defSplit = item.Split('.');
+                var defSplit = item.Split(ModSplit);
                 if (defSplit[0] == "a" && defSplit.Length > 1)
                     return $"{defSplit[1]} {newString}";
             }

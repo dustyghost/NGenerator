@@ -126,7 +126,7 @@ for example: `John Smith really loves oranges!`
 
 ## Plural Definitions
 
-You can also force the generator to use certain words for plurals, using the `:p.` definition. For example, the plural of fish is "fish".
+You can also force the generator to use certain words for plurals, using the `::p.` definition. For example, the plural of fish is "fish".
 
 ```json
 {
@@ -175,7 +175,7 @@ This is limited to putting `an` in front of a, e, i, o and u. And will put `a` i
 
 This is obviously not ideal for words like `unicorn` which is `a unicorn`
 
-So you can use the `:a.` definition.
+So you can use the `::a.` definition.
 
 For example:
 
@@ -209,7 +209,8 @@ In this case we can use the number modifier. For example `.1`
     ],
     "name": [
       "john",
-      "pete"
+      "pete",
+      "alph"
     ],
     "feels": [
       "happy"
@@ -226,4 +227,9 @@ So in the previous example, if `{{name.1}}` returns john, the next time `{{name.
 
 Note, other modifiers are applied after the reserve. So `{{name.1}}` which would make `john`, 
 if `{{name.u.1}}` was the next to be encountered then `John` would be returned (uppercase first letter, but same word).
+
+Also, in the previous example, if `John` was selected to be reserved for `{{name.1}}` and the next tag was `{{name.2}}`,
+the process will select from the remaining unreserved names, so ` pete` or `alph` would be selected.
+If there are no more unreserved names available, then the process will just pick a random one from all the names, reserved or not.
+
 
