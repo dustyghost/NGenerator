@@ -3,9 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageId>DustyGhost.NGenerator</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
+    <Description>NGenerator (the N stands for Narrative) is a template and tag substitution system. This is usful for building all sorts of procedurally generated narratives.</Description>
     <Authors>Mark Johnson</Authors>
-    <Company>DustyGhost</Company> 
+    <Company>DustyGhost</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/dustyghost/NGenerator.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>core</RepositoryBranch>
+    <PackageProjectUrl>https://github.com/dustyghost/NGenerator</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
